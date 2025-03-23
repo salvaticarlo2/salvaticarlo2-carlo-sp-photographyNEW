@@ -74,9 +74,9 @@
   }
 }
 
-/* Hero section styles */
+/* Optimized Hero section styles */
 .hero-section {
-  @apply relative h-screen w-full overflow-hidden;
+  @apply relative min-h-[600px] w-full;
 }
 
 .hero-image {

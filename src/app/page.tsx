@@ -8,37 +8,43 @@ import Footer from '@/app/components/layout/Footer';
 // New HeroSection Component
 const HeroSection = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Hero image - placeholder that can be easily replaced with your own photography */}
-      <div className="absolute inset-0">
-        <Image 
-          src="/images/hero-placeholder.jpg" 
-          alt="Landscape Photography by Carlo SP" 
-          fill 
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30"></div> {/* Overlay for better text visibility */}
-      </div>
-      
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-        <h1 className="font-cormorant text-5xl md:text-7xl mb-4 tracking-wider animate-fade-in">
-          CARLO SP PHOTOGRAPHY
-        </h1>
-        <p className="font-montserrat font-light text-xl md:text-2xl max-w-2xl animate-fade-in-delayed">
-          Capturing the beauty of landscapes around the world
-        </p>
-        <div className="mt-8 animate-fade-in-delayed" style={{ animationDelay: '0.8s' }}>
-          <Link 
-            href="/gallery" 
-            className="bg-transparent border border-white text-white px-8 py-3 font-montserrat text-sm uppercase tracking-widest hover:bg-white hover:text-dark-slate transition-all duration-500"
-          >
-            Explore Gallery
-          </Link>
+    <>
+      {/*
+        CHANGED the section class to remove h-screen.
+        If you still want a large hero, use something like "min-h-[90vh]" or "min-h-[600px]" instead.
+      */}
+      <section className="relative min-h-[600px] w-full overflow-hidden">
+        {/* Hero image - placeholder that can be easily replaced with your own photography */}
+        <div className="absolute inset-0">
+          <Image 
+            src="/images/hero-placeholder.jpg" 
+            alt="Landscape Photography by Carlo SP" 
+            fill 
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30"></div> {/* Overlay for better text visibility */}
         </div>
-      </div>
-    </section>
+        
+        {/* Hero content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+          <h1 className="font-cormorant text-5xl md:text-7xl mb-4 tracking-wider animate-fade-in">
+            CARLO SP PHOTOGRAPHY
+          </h1>
+          <p className="font-montserrat font-light text-xl md:text-2xl max-w-2xl animate-fade-in-delayed">
+            Capturing the beauty of landscapes around the world
+          </p>
+          <div className="mt-8 animate-fade-in-delayed" style={{ animationDelay: '0.8s' }}>
+            <Link 
+              href="/gallery" 
+              className="bg-transparent border border-white text-white px-8 py-3 font-montserrat text-sm uppercase tracking-widest hover:bg-white hover:text-dark-slate transition-all duration-500"
+            >
+              Explore Gallery
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
