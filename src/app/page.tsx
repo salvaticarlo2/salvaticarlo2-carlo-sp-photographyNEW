@@ -1,82 +1,52 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/app/components/layout/Navbar';
 import Footer from '@/app/components/layout/Footer';
 
-// Placeholder hero images until we have actual content
-const heroImages = [
-  { src: '/images/hero1.jpg', alt: 'Mountain landscape at sunset' },
-  { src: '/images/hero2.jpg', alt: 'Coastal seascape with dramatic clouds' },
-  { src: '/images/hero3.jpg', alt: 'Forest scene with morning mist' },
-];
-
-// Placeholder gallery categories
-const galleryCategories = [
-  { title: 'Mountains', image: '/images/category-mountains.jpg' },
-  { title: 'Coastal', image: '/images/category-coastal.jpg' },
-  { title: 'Forests', image: '/images/category-forests.jpg' },
-  { title: 'Deserts', image: '/images/category-deserts.jpg' },
-];
-
-// Placeholder testimonials
-const testimonials = [
-  {
-    text: "Carlo's photography captures the essence of landscapes in a way that transports you directly to the scene. His work is breathtaking.",
-    author: 'Maria Johnson',
-    location: 'New York, USA',
-  },
-  {
-    text: "The print I purchased from Carlo is the centerpiece of my living room. The quality is outstanding and the colors are exactly as they appeared online.",
-    author: 'Sophie Martinez',
-    location: 'Barcelona, Spain',
-  },
-  {
-    text: "Carlo has an exceptional eye for composition and light. His images convey not just the visual beauty of landscapes, but their emotional essence as well.",
-    author: 'James Wilson',
-    location: 'London, UK',
-  },
-];
+// New HeroSection Component
+const HeroSection = () => {
+  return (
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Hero image - placeholder that can be easily replaced with your own photography */}
+      <div className="absolute inset-0">
+        <Image 
+          src="/images/hero-placeholder.jpg" 
+          alt="Landscape Photography by Carlo SP" 
+          fill 
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30"></div> {/* Overlay for better text visibility */}
+      </div>
+      
+      {/* Hero content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+        <h1 className="font-cormorant text-5xl md:text-7xl mb-4 tracking-wider animate-fade-in">
+          CARLO SP PHOTOGRAPHY
+        </h1>
+        <p className="font-montserrat font-light text-xl md:text-2xl max-w-2xl animate-fade-in-delayed">
+          Capturing the beauty of landscapes around the world
+        </p>
+        <div className="mt-8 animate-fade-in-delayed" style={{ animationDelay: '0.8s' }}>
+          <Link 
+            href="/gallery" 
+            className="bg-transparent border border-white text-white px-8 py-3 font-montserrat text-sm uppercase tracking-widest hover:bg-white hover:text-dark-slate transition-all duration-500"
+          >
+            Explore Gallery
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default function Home() {
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-
-  // Hero image slider effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentHeroIndex((prevIndex) =>
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
       <Navbar />
-
-      {/* Hero Section */}
-      <section className="hero-section">
-        {/* Placeholder for hero image - in production would use actual images */}
-        <div className="hero-image bg-dark-slate">
-          {/* We would normally have actual images here */}
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 to-transparent"></div>
-        </div>
-
-        <div className="hero-overlay">
-          <h1 className="hero-title fade-in">CARLO SP</h1>
-          <p className="hero-subtitle fade-in fade-in-delay-1">
-            Capturing the breathtaking beauty of landscapes around the world
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 fade-in fade-in-delay-2">
-            <Link href="/galleries" className="btn-primary hover-lift">
-              Explore Galleries
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Introduction Section */}
       <section className="py-24 bg-charcoal">
@@ -101,15 +71,7 @@ export default function Home() {
           <h2 className="section-title">Featured Work</h2>
 
           <div className="gallery-grid">
-            {galleryCategories.map((category, index) => (
-              <div key={index} className="gallery-item aspect-[4/3] bg-charcoal">
-                {/* In production, we'd use actual images */}
-                <div className="gallery-image bg-gradient-to-br from-earth-tone/20 to-sage-green/20"></div>
-                <div className="gallery-overlay">
-                  <h3 className="gallery-title">{category.title}</h3>
-                </div>
-              </div>
-            ))}
+            {/* Render your gallery categories or items here */}
           </div>
 
           <div className="text-center mt-16">
@@ -142,13 +104,7 @@ export default function Home() {
           <h2 className="section-title">What Clients Say</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-card">
-                <p className="testimonial-text">"{testimonial.text}"</p>
-                <p className="testimonial-author">{testimonial.author}</p>
-                <p className="testimonial-location">{testimonial.location}</p>
-              </div>
-            ))}
+            {/* Render testimonial cards here */}
           </div>
 
           <div className="text-center mt-16">
@@ -168,9 +124,11 @@ export default function Home() {
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {/* Placeholder for Instagram feed - would be dynamically populated */}
             {[...Array(8)].map((_, index) => (
-              <div key={index} className="aspect-square bg-dark-slate hover:opacity-80 transition-all duration-500 group overflow-hidden">
+              <div 
+                key={index} 
+                className="aspect-square bg-dark-slate hover:opacity-80 transition-all duration-500 group overflow-hidden"
+              >
                 <div className="w-full h-full bg-gradient-to-br from-earth-tone/10 to-sage-green/10 group-hover:scale-105 transition-transform duration-500"></div>
               </div>
             ))}
