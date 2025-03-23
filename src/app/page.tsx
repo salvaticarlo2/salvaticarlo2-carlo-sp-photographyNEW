@@ -1,9 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar.tsx';
+import Footer from './components/layout/Footer.tsx';
+
+// Placeholder hero images until we have actual content
+const heroImages = [
+  { src: '/images/hero1.jpg', alt: 'Mountain landscape at sunset' },
+  { src: '/images/hero2.jpg', alt: 'Coastal seascape with dramatic clouds' },
+  { src: '/images/hero3.jpg', alt: 'Forest scene with morning mist' },
+];
 
 // Placeholder gallery categories
 const galleryCategories = [
@@ -33,10 +40,14 @@ const testimonials = [
 ];
 
 export default function Home() {
-  // Hero image slider effect - we'll use this in the future when we have actual images
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  // Hero image slider effect
   useEffect(() => {
     const interval = setInterval(() => {
-      // Animation logic will go here when we implement the actual slider
+      setCurrentHeroIndex((prevIndex) =>
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
     }, 5000);
 
     return () => clearInterval(interval);
@@ -133,7 +144,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="testimonial-card">
-                <p className="testimonial-text">&ldquo;{testimonial.text}&rdquo;</p>
+                <p className="testimonial-text">"{testimonial.text}"</p>
                 <p className="testimonial-author">{testimonial.author}</p>
                 <p className="testimonial-location">{testimonial.location}</p>
               </div>
@@ -185,7 +196,7 @@ export default function Home() {
             <h2 className="section-title text-off-white">Get in Touch</h2>
             <p className="text-lg md:text-xl mb-10 leading-relaxed">
               Interested in purchasing prints or discussing a collaboration?
-              I&apos;d love to hear from you.
+              I'd love to hear from you.
             </p>
             <Link
               href="/contact"
