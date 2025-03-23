@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./app/*"]
-    },
+  "moduleResolution": "node",
+  "baseUrl": ".",
+  "paths": {
+    "@/*": ["./src/*"]
+  }
+},
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
