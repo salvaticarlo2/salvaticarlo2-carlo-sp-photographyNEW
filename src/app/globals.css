@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap') ;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   /* Color scheme based on design */
-  --color-dark-slate: #2A2A2A;
+  --color-dark-slate: #2D3741; /* Updated to be slightly more blue-gray */
   --color-off-white: #F5F5F5;
   --color-earth-tone: #A67C52;
   --color-sage-green: #7D9D8C;
@@ -12,7 +14,7 @@
   --color-pure-white: #FFFFFF;
   --color-light-gray: #E0E0E0;
   --color-medium-gray: #888888;
-  --color-charcoal: #1A1A1A;
+  --color-charcoal: #222222; /* Slightly lighter for better contrast */
   --color-success-green: #4CAF50;
   --color-alert-red: #F44336;
   --color-warning-amber: #FFC107;
@@ -20,15 +22,15 @@
 
 @layer base {
   body {
-    @apply bg-dark-slate text-off-white font-raleway;
+    @apply bg-white text-charcoal font-montserrat font-light;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair font-normal tracking-tight;
+    @apply font-cormorant font-normal tracking-wide;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-medium leading-tight;
   }
 
   h2 {
@@ -40,13 +42,13 @@
   }
 
   p {
-    @apply font-raleway text-base md:text-lg leading-relaxed;
+    @apply font-montserrat text-base md:text-lg leading-relaxed;
   }
 
   a {
     @apply transition-all duration-300;
   }
-
+  
   .accent-text {
     @apply font-montserrat;
   }
@@ -54,19 +56,19 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-earth-tone text-off-white px-6 py-3 font-raleway font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-opacity-90 inline-block;
+    @apply bg-transparent border border-dark-slate text-dark-slate px-8 py-3 font-montserrat text-sm uppercase tracking-widest transition-all duration-500 hover:bg-dark-slate hover:text-white inline-block;
   }
 
   .btn-secondary {
-    @apply bg-transparent border border-off-white text-off-white px-6 py-3 font-raleway font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-off-white hover:text-dark-slate inline-block;
+    @apply bg-transparent border border-white text-white px-8 py-3 font-montserrat text-sm uppercase tracking-widest transition-all duration-500 hover:bg-white hover:text-dark-slate inline-block;
   }
 
   .nav-link {
-    @apply font-raleway font-medium uppercase tracking-wider text-off-white hover:text-earth-tone transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-earth-tone after:transition-all after:duration-300 hover:after:w-full;
+    @apply font-montserrat font-light uppercase tracking-widest text-white hover:opacity-70 transition-opacity duration-300;
   }
 
   .section-title {
-    @apply font-playfair text-4xl md:text-5xl mb-12 text-center relative after:content-[''] after:absolute after:w-24 after:h-0.5 after:bg-earth-tone after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:mt-4 pb-6;
+    @apply font-cormorant text-4xl md:text-5xl mb-12 text-center;
   }
 
   .container-custom {
@@ -84,24 +86,47 @@
 }
 
 .hero-overlay {
-  @apply absolute inset-0 bg-gradient-to-b from-charcoal/60 to-charcoal/30 flex flex-col items-center justify-center text-center px-4;
+  @apply absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center px-4;
 }
 
 .hero-title {
-  @apply font-playfair font-bold text-4xl md:text-6xl lg:text-7xl text-pure-white mb-6 tracking-tight;
+  @apply font-cormorant font-medium text-5xl md:text-7xl text-white mb-4 tracking-wider animate-fade-in;
 }
 
 .hero-subtitle {
-  @apply font-raleway font-light text-xl md:text-2xl text-pure-white mb-12 max-w-3xl;
+  @apply font-montserrat font-light text-xl md:text-2xl text-white mb-8 max-w-2xl animate-fade-in-delayed;
+}
+
+/* Masonry Grid Layout */
+.masonry-grid {
+  columns: 1;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    columns: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
 }
 
 /* Gallery grid styles */
 .gallery-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
 }
 
 .gallery-item {
-  @apply relative overflow-hidden group aspect-[4/3];
+  @apply relative overflow-hidden group aspect-square;
 }
 
 .gallery-image {
@@ -109,11 +134,11 @@
 }
 
 .gallery-overlay {
-  @apply absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-start p-6;
+  @apply absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/60;
 }
 
 .gallery-title {
-  @apply font-playfair text-2xl text-pure-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500;
+  @apply font-cormorant text-3xl text-white tracking-wider;
 }
 
 /* Testimonial styles */
@@ -130,7 +155,7 @@
 }
 
 .testimonial-location {
-  @apply font-raleway text-medium-gray text-sm mt-1;
+  @apply font-montserrat text-medium-gray text-sm mt-1;
 }
 
 /* Footer styles */
@@ -191,25 +216,17 @@
 
 /* Fade-in animation for page elements */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in {
-  @apply opacity-0;
-  animation: fadeIn 0.8s ease-out forwards;
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-in-out;
 }
 
-.fade-in-delay-1 {
-  animation-delay: 0.2s;
-}
-
-.fade-in-delay-2 {
-  animation-delay: 0.4s;
-}
-
-.fade-in-delay-3 {
-  animation-delay: 0.6s;
+.animate-fade-in-delayed {
+  animation: fadeIn 1.5s ease-in-out 0.5s forwards;
+  opacity: 0;
 }
 
 /* Improved button hover effects */
