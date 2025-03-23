@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Navbar from './components/layout/Navbar.tsx';
-import Footer from './components/layout/Footer.tsx';
+import Navbar from './components/layout/Navbar.js';
+import Footer from './components/layout/Footer.js';
 
 // Placeholder hero images until we have actual content
 const heroImages = [
